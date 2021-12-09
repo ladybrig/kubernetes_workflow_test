@@ -1,0 +1,32 @@
+# Default values for dummy.
+
+# tier name: dev | demo | qa | uat | prod
+tier: dev
+
+# dummyApplicationPort is the listing port of the container
+dummyApplicationPort: 3007
+replicaCount: 2
+image:
+  repository: tgpregistry.azurecr.io/tgp-dummy
+  pullPolicy: Always
+  tag: "latest"
+imagePullSecrets:
+  name: tgp-reg-secret
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: ClusterIP
+  port: 80
+resources: {}
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+nodeSelector: {}
+tolerations: []
+affinity: {}
+

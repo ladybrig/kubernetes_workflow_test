@@ -1,0 +1,160 @@
+body {
+    background-color: black;
+    background-image: url('/static/images/minecraft_cobble.jpg');
+    background-size: 100px 100px;
+    color: wheat;
+}
+div{
+    overflow-wrap: normal;
+}
+
+h1 {
+    color: #FFAA00;
+    margin-left: 20px;
+  }
+
+h2 {
+    color: #AAAAAA;
+    margin-left: 20px;
+  }
+
+div.green-band {
+    height: 25px;
+    background-color: #00AA00;
+    background-image: url('/static/images/mcdirt.jpg');
+    background-size: 100px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+div.green-band> img {
+    height: 20px;
+    align-items: center;
+}
+
+div.brown-band {
+    height: 40px;
+    background-color: #825432;
+    background-image: url('/static/images/minecraft_dirt.jpg');
+    background-size: 100px 100px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+div.brown-band> div{
+    max-width: 1012px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+div.brown-band> div> h2 {
+    text-align: center;
+    padding: auto;
+    font-size: 27px;
+    font-family: 'Aldrich';
+    color: #1fd0f8;
+    text-shadow: 1px 1px #24292e;
+}
+div.brown-band> div > img {
+    width: 30px;
+    height: 30px;
+    align-self: center; 
+}
+
+div.page-title {
+    height: 150px;
+    background-image: url('/static/images/minecraft_dirt.jpg');
+    background-size: 100px 100px;
+    display: flex;
+}
+
+div.container-lg {
+    background-color: #2b2b2b;
+    border-color: black;
+    color: wheat;
+    display: flex; 
+    justify-content: space-between;
+}
+
+div.page-title> div.container-lg> h1 {
+    text-align: center;
+    align-self: center;
+    padding: auto;
+    font-size: 60px;
+    font-family: 'Aldrich';
+    color: #55ffc0; 
+    text-shadow: 3px 2px #c2c1c196;
+}
+div.page-title>  div.container-lg> img {
+    align-self: center;
+    width: 70px;
+    height: 70px;
+    margin-left: 2em;
+    margin-right: 2em; 
+}
+
+section {
+    padding: 1em;
+}
+
+div.image-block {
+    align-self: center;
+    display: flex;
+    padding: 1em;
+}
+
+div.world-image {
+    width: 506px;
+    height: 270px;
+    display: flex;
+}
+div.world-image > img {
+    width: 506px;
+    height: 270px;
+    align-self: center;
+}
+
+div.world-image-notext {
+    width: 1012px;
+    height: 541px;
+    display: flex;
+}
+div.world-image-notext > img {
+    width: 1012px;
+    height: 541px;
+    align-self: center;
+}
+
+div.world-text {
+    width: 506px;
+    height: 270px;
+    text-align: left;
+    overflow-wrap: normal;
+}
+
+footer {
+    background-color: #00AA00;
+}
+
+ul { 
+    list-style-type: none;    
+    padding-left: 2em;
+}
+ul li::before { 
+    list-style-image: url('/static/images/emoji.ico'); 
+}
+
+.ico {
+    width: 20px;
+    height: 20px;
+}
+.tiny-ico{
+    width: 10px;
+    height: 10px;
+}
+.logo {
+    width: 50px;
+    height: 50px;
+}

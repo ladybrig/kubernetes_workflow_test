@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-k8s-svc
+  labels:
+    tier: {{ .Values.tier }}
+spec:
+  selector:
+    app: {{ .Release.Name }}-api
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.dummyApplicationPort }}
+      nodePort: {{ .Values.service.nodePort }}

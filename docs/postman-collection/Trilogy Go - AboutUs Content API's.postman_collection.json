@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "36fd5bfe-64db-416e-9c02-8e9b73e3ab81",
+		"name": "Trilogy Go - AboutUs Content API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AboutUs Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"AboutUS\",\r\n  \"description\": [\r\n    {\r\n      \"displayType\": \"ExpandableText\",\r\n      \"sectionTitle\": \"AboutUS title\",\r\n      \"content\": \"AboutUS content\"\r\n    }\r\n  ],\r\n  \"phone\": \"9000099999\",\r\n  \"featuredImageUrl\": \"1/4b569dd3-6b6c-4b3e-b9c3-36f6d5dd8fe7.png\",\r\n  \"logoImageUrl\": \"1/41ae0168-0078-483e-8f46-08fd9fbaf3e0.png\",\r\n  \"hoursOfOperation\": [\r\n    {\r\n      \"label\": \"test\",\r\n      \"daysOfWeek\": [\r\n        \"SUN\"\r\n      ],\r\n      \"startTime\": \"05:00PM\",\r\n      \"endTime\": \"05:00PM\"\r\n    }\r\n  ],\r\n  \"address\": \"aboutus address\",\r\n  \"email\": \"aboutus@example.com\",\r\n  \"imageGallery\": [\r\n        {\r\n            \"imageUrl\": \"1/4b569dd3-6b6c-4b3e-b9c3-36f6d5dd8fe8.png\",\r\n            \"label\": \"Event Centre\",\r\n            \"externalLink\": \"http://casio-amigo.com/reservation\"\r\n        }\r\n    ],\r\n  \"facebook\": \"facebook\", \r\n  \"instagram\": \"instagram\", \r\n  \"twitter\": \"twitter\", \r\n  \"youtube\": \"youtube\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{version}}/{{siteId}}/content/aboutus",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"{{siteId}}",
+						"content",
+						"aboutus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AboutUs Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/{{version}}/{{siteId}}/content/aboutus/details",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"{{siteId}}",
+						"content",
+						"aboutus",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AboutUs Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"AboutUS Event\",\r\n  \"description\": [\r\n    {\r\n      \"displayType\": \"ExpandableText\",\r\n      \"sectionTitle\": \"AboutUS title\",\r\n      \"content\": \"AboutUS content Event\"\r\n    }\r\n  ],\r\n  \"phone\": \"9000099999\",\r\n  \"featuredImageUrl\": \"1/4b569dd3-6b6c-4b3e-b9c3-36f6d5dd8fe7.png\",\r\n  \"logoImageUrl\": \"1/41ae0168-0078-483e-8f46-08fd9fbaf3e0.png\",\r\n  \"hoursOfOperation\": [\r\n    {\r\n      \"label\": \"test\",\r\n      \"daysOfWeek\": [\r\n        \"SUN\"\r\n      ],\r\n      \"startTime\": \"05:00PM\",\r\n      \"endTime\": \"05:00PM\"\r\n    }\r\n  ],\r\n  \"address\": \"aboutus address\",\r\n  \"email\": \"aboutus@example.com\",\r\n  \"imageGallery\": [\r\n        {\r\n            \"imageUrl\": \"1/4b569dd3-6b6c-4b3e-b9c3-36f6d5dd8fe8.png\",\r\n            \"label\": \"Event Centre\",\r\n            \"externalLink\": \"http://casio-amigo.com/reservation\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{version}}/{{siteId}}/content/aboutus",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"{{siteId}}",
+						"content",
+						"aboutus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AboutUs Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{version}}/{{siteId}}/content/aboutus",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"{{siteId}}",
+						"content",
+						"aboutus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/health",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

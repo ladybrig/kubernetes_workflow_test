@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  creationTimestamp: null
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app: {{ .Release.Name }}-api
+    tier: {{ .Values.tier }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ .Release.Name }}-api
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.name }}
+      containers:
+        - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          name: {{ .Release.Name }}-api
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources: {}
+          env:
+            - name: APPLICATION_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-configmap
+                  key: dummy.application.port
+            - name: TIER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-configmap
+                  key: tier      
+          ports:
+            - containerPort: {{ .Values.dummyApplicationPort }}

@@ -1,0 +1,54 @@
+# PR pipeline
+# This pipeline should trigger on a PR into the develop branch
+#     - trigger is enabled via branch policies, rather than in the YAML file
+#     - the purpose of this build is to require validation of  the NPM build 
+#       and linting before a PR is allowed to complete
+trigger:
+  none
+
+pool:
+  vmImage: ubuntu-20.04
+
+steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      'ls -al'
+      cd service
+      'ls -al'
+  enabled: false
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm --prefix ./service run build
+  displayName: 'npm install and build'
+  enabled: false
+
+# - task: npmAuthenticate@0
+#  inputs:
+#    workingFile: 'service/.npmrc'
+
+- bash: |
+      npm install tslint typescript -g
+      tslint — project ./tsconfig.json
+  displayName: 'Run tslint'
+  failOnStderr: true
+  enabled: false
+  
+- task: HelmInstaller@0
+  displayName: 'Helm tool install'
+  inputs:
+    helmVersion: '$(helmVersion)'
+    checkLatestHelmVersion: false
+    installKubectl: true
+
+- bash: |
+    cd service/helm-chart/$(chartname)
+    helm lint .
+  displayName: 'helm lint'
+  failOnStderr: true

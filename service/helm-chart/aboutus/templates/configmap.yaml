@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  labels:
+    tier: {{ .Values.tier }}
+data:
+  dummy.application.port: {{ .Values.dummyApplicationPort | quote }}
+  tier: {{ .Values.tier }}

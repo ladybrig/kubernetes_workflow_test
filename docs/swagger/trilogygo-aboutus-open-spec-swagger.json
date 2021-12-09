@@ -1,0 +1,653 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "TrilogyGo AboutUs Content Service API's",
+    "version": "1.0.0",
+    "title": "TrilogyGo AboutUs Content API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/{version}/{siteId}",
+      "description": "Local server",
+      "variables": {
+        "version": {
+          "description": "version",
+          "default": "v1"
+        },
+        "siteId": {
+          "description": "casinoSiteId",
+          "default": "1"
+        }
+      }
+    },
+    {
+      "url": "http://localhost:8001/{version}/{siteId}",
+      "description": "stg server",
+      "variables": {
+        "version": {
+          "description": "version",
+          "default": "v1"
+        },
+        "siteId": {
+          "description": "casinoSiteId",
+          "default": "1"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/content/aboutus": {
+      "post": {
+        "summary": "Create aboutus content",
+        "description": "Create aboutus content",
+        "operationId": "AboutUsPOST",
+        "tags": [
+          "AboutUs"
+        ],
+        "requestBody": {
+          "description": "Create aboutus content",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/aboutus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notFound"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Already Exist!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/alreadyExists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update aboutus content",
+        "description": "Update aboutus content",
+        "operationId": "AboutusPUT",
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "description": "Aboutus to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/aboutus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notFound"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Already Exist!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/alreadyExists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete aboutus content",
+        "description": "Delete aboutus content",
+        "operationId": "AboutUsDELETE",
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notFound"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Already Exist!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/alreadyExists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/content/aboutus/details": {
+      "get": {
+        "summary": "Retrieve aboutus details",
+        "description": "Retrieve aboutus details by Id",
+        "operationId": "AboutUsDetailsGET",
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notFound"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Already Exist!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/alreadyExists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      },
+      "secretKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-SECRET-KEY"
+      }
+    },
+    "schemas": {
+      "success": {
+        "$ref": "#/components/schemas/aboutus"
+      },
+      "error": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "badRequest": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 4000
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Bad Request"
+          }
+        }
+      },
+      "unauthorized": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 4001
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Unauthorized"
+          }
+        }
+      },
+      "forbidden": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 4003
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Rorbidden"
+          }
+        }
+      },
+      "notFound": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 4004
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Not Found"
+          }
+        }
+      },
+      "alreadyExists": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 4009
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Already Exists"
+          }
+        }
+      },
+      "internalServerError": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "default": 5000
+          },
+          "errorMessage": {
+            "type": "string",
+            "default": "Internal Server Error"
+          }
+        }
+      },
+      "hoursOfOperation": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "daysOfWeek": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          }
+        }
+      },
+      "description": {
+        "type": "object",
+        "properties": {
+          "displayType": {
+            "type": "string"
+          },
+          "sectionTitle": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "imageGallery": {
+        "type": "object",
+        "properties": {
+          "imageUrl": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "externalLink": {
+            "type": "string"
+          }
+        }
+      },
+      "aboutus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/description"
+            }
+          },
+          "phone": {
+            "type": "string"
+          },
+          "featuredImageUrl": {
+            "type": "string"
+          },
+          "logoImageUrl": {
+            "type": "string"
+          },
+          "hoursOfOperation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/hoursOfOperation"
+            }
+          },
+          "address": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "imageGallery": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/imageGallery"
+            }
+          },
+          "facebook": {
+            "type": "string"
+          },
+          "instagram": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "youtube": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    },
+    {
+      "secretKey": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "AboutUs",
+      "description": "AboutUs Content Create, Update, Delete and Details"
+    }
+  ]
+}

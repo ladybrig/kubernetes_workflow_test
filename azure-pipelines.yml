@@ -1,0 +1,130 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches: 
+    include: 
+    - develop
+    - main
+  paths:
+    exclude:
+    - './*.yml'
+    - './*.yaml'
+
+pool:
+  vmImage: ubuntu-20.04
+
+steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      'ls -al'
+      cd service
+      'ls -al'
+      whoami
+      sudo usermod -aG docker $USER
+  enabled: false
+
+#- task: npmAuthenticate@0
+#  inputs:
+#    workingFile: 'service/.npmrc'
+- task: Docker@1
+  displayName: 'Build an image'
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
+    command: 'Build an image'
+    dockerFile: 'service/Dockerfile'
+    imageName: 'TGP-$(chartname)-content-service:$(Build.BuildId)'
+    includeLatestTag: true
+    useDefaultContext: false
+    buildContext: 'service'
+
+- task: Docker@1
+  displayName: 'Push the image'
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
+    command: 'Push an image'
+    imageName: 'TGP-$(chartname)-content-service:$(Build.BuildId)'
+
+- task: Docker@1
+  displayName: 'Push the image with tag latest'
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
+    command: 'Push an image'
+    imageName: 'TGP-$(chartname)-content-service:latest'
+
+- task: Bash@3
+  displayName: 'Remove docker image from local cache'
+  inputs:
+    targetType: 'inline'
+    script: |
+      docker image rm $(docker image ls -f dangling=true -q) -f
+      docker image rm $(containerRegistry)/tgp-$(chartname)-content-service:$(Build.BuildId)
+      docker image rm $(containerRegistry)/tgp-$(chartname)-content-service:latest
+
+- task: HelmInstaller@0
+  displayName: 'Helm tool install'
+  inputs:
+    helmVersion: '$(helmVersion)'
+    checkLatestHelmVersion: false
+    installKubectl: true
+
+- bash: |
+    cd service/helm-chart/$(chartname)
+    helm lint .
+  displayName: 'helm lint'
+  failOnStderr: true
+
+- bash: |
+    cd service
+    ls -al
+    chart_version='0.1.0'
+    echo $chart_version
+    echo "##vso[task.setvariable variable=chartVersion]$chart_version"
+    echo "******************"
+    echo "Chart version from Chart.yaml $chart_version"
+    helm package \
+        --version $chart_version \
+        --app-version $(imageTag) \
+        helm-chart/$(chartname)
+  failOnStderr: true
+  displayName: 'helm package'
+
+- bash: |
+    export HELM_EXPERIMENTAL_OCI=1
+    cd service/helm-chart/$(chartname)
+    echo "Using chart version $CHARTVERSION"
+    helm chart save . $(containerRegistry)/helm/$(chartName):$CHARTVERSION
+  displayName: 'helm chart save'
+  failOnStderr: true
+  enabled: false
+
+- bash: |
+    export HELM_EXPERIMENTAL_OCI=1
+    echo $(registryPassword) | helm registry login $(containerRegistry) \
+      --username $(registryLogin) \
+      --password-stdin
+  displayName: 'helm registry login'
+  failOnStderr: true
+
+- bash: |
+    export HELM_EXPERIMENTAL_OCI=1
+    echo "Using chart version $CHARTVERSION"
+    helm push service/$(chartName)-$CHARTVERSION.tgz oci://$(containerRegistry)/helm/$(chartName)
+    echo $(jq -n --arg version "$CHARTVERSION" '{helmChartVersion: $version}') > $(build.artifactStagingDirectory)/variables.json
+  displayName: 'helm chart push'
+  failOnStderr: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)/service'
+    Contents: '*.tgz'
+    TargetFolder: '$(build.artifactStagingDirectory)'
+
+- publish: $(build.artifactStagingDirectory)
+  artifact: build-artifact
