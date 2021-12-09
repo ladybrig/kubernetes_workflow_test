@@ -117,5 +117,5 @@ dist
 .pnp.*
 
 
-#python cirtual environment
+#python virtual environment
 .venv
