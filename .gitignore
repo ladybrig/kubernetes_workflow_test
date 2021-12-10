@@ -119,3 +119,4 @@ dist
 
 #python virtual environment
 .venv
+__pycache__
