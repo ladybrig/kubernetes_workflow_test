@@ -37,7 +37,7 @@ steps:
     dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
     command: 'Build an image'
     dockerFile: 'service/Dockerfile'
-    imageName: 'TGP-$(chartname)-content-service:$(Build.BuildId)'
+    imageName: '$(chartname):$(Build.BuildId)'
     includeLatestTag: true
     useDefaultContext: false
     buildContext: 'service'
@@ -48,7 +48,7 @@ steps:
     containerregistrytype: Container Registry
     dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
     command: 'Push an image'
-    imageName: 'TGP-$(chartname)-content-service:$(Build.BuildId)'
+    imageName: '$(chartname):$(Build.BuildId)'
 
 - task: Docker@1
   displayName: 'Push the image with tag latest'
@@ -56,7 +56,7 @@ steps:
     containerregistrytype: Container Registry
     dockerRegistryEndpoint: 07c50e9e-1312-4e26-b864-07ac0b8dda40
     command: 'Push an image'
-    imageName: 'TGP-$(chartname)-content-service:latest'
+    imageName: '$(chartname):latest'
 
 - task: Bash@3
   displayName: 'Remove docker image from local cache'
@@ -64,8 +64,8 @@ steps:
     targetType: 'inline'
     script: |
       docker image rm $(docker image ls -f dangling=true -q) -f
-      docker image rm $(containerRegistry)/tgp-$(chartname)-content-service:$(Build.BuildId)
-      docker image rm $(containerRegistry)/tgp-$(chartname)-content-service:latest
+      docker image rm $(containerRegistry)/$(chartname):$(Build.BuildId)
+      docker image rm $(containerRegistry)/$(chartname):latest
 
 - task: HelmInstaller@0
   displayName: 'Helm tool install'
