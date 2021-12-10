@@ -10,5 +10,5 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.dummyApplicationPort }}
+      targetPort: {{ .Values.poppichuApplicationPort }}
       nodePort: {{ .Values.service.nodePort }}

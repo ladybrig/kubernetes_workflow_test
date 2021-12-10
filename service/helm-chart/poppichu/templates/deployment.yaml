@@ -29,11 +29,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-configmap
-                  key: dummy.application.port
+                  key: poppichu.application.port
             - name: TIER
               valueFrom:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-configmap
                   key: tier      
           ports:
-            - containerPort: {{ .Values.dummyApplicationPort }}
+            - containerPort: {{ .Values.poppichuApplicationPort }}

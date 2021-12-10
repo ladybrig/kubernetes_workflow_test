@@ -1,13 +1,13 @@
-# Default values for dummy.
+# Default values for poppichu.
 
 # tier name: dev | demo | qa | uat | prod
 tier: dev
 
-# dummyApplicationPort is the listing port of the container
-dummyApplicationPort: 3007
+# poppichuApplicationPort is the listing port of the container
+poppichuApplicationPort: 3007
 replicaCount: 2
 image:
-  repository: tgpregistry.azurecr.io/tgp-dummy
+  repository: tgpregistry.azurecr.io/tgp-poppichu
   pullPolicy: Always
   tag: "latest"
 imagePullSecrets:

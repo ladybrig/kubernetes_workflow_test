@@ -5,5 +5,5 @@ metadata:
   labels:
     tier: {{ .Values.tier }}
 data:
-  dummy.application.port: {{ .Values.dummyApplicationPort | quote }}
+  poppichu.application.port: {{ .Values.poppichuApplicationPort | quote }}
   tier: {{ .Values.tier }}
