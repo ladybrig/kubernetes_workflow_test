@@ -1,19 +1,8 @@
-FROM ubuntu:16.04
+FROM python
 
-RUN apt-get update -y && \
-    apt-get install -y python-pip python-dev
-
-COPY ./src/requirements.txt /app/requirements.txt
-
-WORKDIR /app
+WORKDIR /project
+COPY ./src /project
 
 RUN pip install -r requirements.txt
 
-COPY ./src /app
-
-ENTRYPOINT [ "python" ]
-
-CMD [ "app.py" ]
-
-EXPOSE 4200
-
+ENTRYPOINT python app.py
