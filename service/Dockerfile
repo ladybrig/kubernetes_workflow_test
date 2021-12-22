@@ -1,4 +1,4 @@
-FROM python:3.11.0a1-slim-bullseye
+FROM python:3.11.0a3-slim-bullseye
 
 WORKDIR /project
 COPY ./src /project
